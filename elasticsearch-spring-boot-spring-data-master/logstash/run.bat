@@ -1,0 +1,1 @@
+logstash -f logstash_default.conf

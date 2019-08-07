@@ -1,0 +1,1 @@
+select * from goods where last_update_time > :sql_last_value
