@@ -16,34 +16,32 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "goods-test", type = "goods2")
+@Document(indexName = "goods-test2", type = "goods2")
 public class Goods2 {
     /**
-     * {
-     * "id": 1,
-     * "title": "皇家小奶罐幼猫粮奶糕1-4月孕猫离乳期断奶猫粮BK34/400g*3袋",
-     * "supplier": "皇家宠物食品旗舰店 ",
-     * "properties": [{
-     * "property": "品牌",
-     * "propertyValue": "ROYAL CANIN/皇家"
-     * },
-     * {
-     * "property": "适用阶段",
-     * "propertyValue": "幼猫"
-     * },
-     * {
-     * "property": "包装体积",
-     * "propertyValue": "0.2"
-     * },
-     * {
-     * "property": "毛重",
-     * "propertyValue": "300g"
-     * }
-     * <p>
-     * ],
-     * <p>
-     * "stock": 3000
-     * }
+     {
+     "id": 1,
+     "title": "皇家小奶罐幼猫粮奶糕1-4月孕猫离乳期断奶猫粮BK34/400g*3袋",
+     "supplier": "皇家宠物食品旗舰店 ",
+     "propertyList": [{
+     "name": "品牌",
+     "value": "ROYAL CANIN/皇家"
+     },
+     {
+     "name": "适用阶段",
+     "value": "幼猫"
+     },
+     {
+     "name": "包装体积",
+     "value": "0.2"
+     },
+     {
+     "name": "毛重",
+     "value": "300g"
+     }
+     ],
+     "stock": 3000
+     }
      **/
     @Id
     private Long id;

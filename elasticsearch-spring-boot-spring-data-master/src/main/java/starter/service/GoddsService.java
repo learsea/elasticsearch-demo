@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import starter.api.GoodsVo;
 import starter.model.Goods;
+import starter.model.Goods2;
 import starter.repository.GoodsRepository;
-
-import java.util.List;
 
 @Service
 public class GoddsService {
@@ -46,7 +45,7 @@ public class GoddsService {
             goodsVo.getPropertyList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("property", e)));
         }
         if (goodsVo.getPropertyValueList() != null && !goodsVo.getPropertyValueList().isEmpty()) {
-            goodsVo.getPropertyList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("propertyValue", e)));
+            goodsVo.getPropertyValueList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("propertyValue", e)));
         }
         if (goodsVo.getPropertiesList() != null && !goodsVo.getPropertiesList().isEmpty()) {
             goodsVo.getPropertiesList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("properties", e)));
@@ -63,9 +62,10 @@ public class GoddsService {
     }
 
     public void createIndex() {
-        if (!elasticsearchTemplate.indexExists(Goods.class)) {
-            elasticsearchTemplate.createIndex(Goods.class);
-        }
+        elasticsearchTemplate.createIndex(Goods.class);
+        elasticsearchTemplate.putMapping(Goods.class);
+        elasticsearchTemplate.createIndex(Goods2.class);
+        elasticsearchTemplate.putMapping(Goods2.class);
     }
 
     public void deleteIndex() {
