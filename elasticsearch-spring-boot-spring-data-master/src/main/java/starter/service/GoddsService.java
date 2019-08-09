@@ -10,6 +10,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import starter.api.GoodsVo;
 import starter.model.Goods;
 import starter.repository.GoodsRepository;
 
@@ -34,27 +35,27 @@ public class GoddsService {
         goodsRepository.delete(goods);
     }
 
-    public Page<Goods> search(Goods goods, int page, int size) {
+    public Page<Goods> search(GoodsVo goodsVo, int page, int size) {
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
         queryBuilder.withFilter(boolQueryBuilder);
-        if (!StringUtils.isEmpty(goods.getTitle())) {
-            boolQueryBuilder.must(QueryBuilders.matchQuery("title", goods.getTitle()));
+        if (!StringUtils.isEmpty(goodsVo.getTitle())) {
+            boolQueryBuilder.must(QueryBuilders.matchQuery("title", goodsVo.getTitle()));
         }
-        if (!StringUtils.isEmpty(goods.getProperty())) {
-            boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("property", goods.getProperty()));
+        if (goodsVo.getPropertyList() != null && !goodsVo.getPropertyList().isEmpty()) {
+            goodsVo.getPropertyList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("property", e)));
         }
-        if (!StringUtils.isEmpty(goods.getPropertyValue())) {
-            boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("propertyValue", goods.getPropertyValue()));
+        if (goodsVo.getPropertyValueList() != null && !goodsVo.getPropertyValueList().isEmpty()) {
+            goodsVo.getPropertyList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("propertyValue", e)));
         }
-        if (!StringUtils.isEmpty(goods.getProperties())) {
-            boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("properties", goods.getProperties()));
+        if (goodsVo.getPropertiesList() != null && !goodsVo.getPropertiesList().isEmpty()) {
+            goodsVo.getPropertiesList().forEach(e -> boolQueryBuilder.must(QueryBuilders.matchPhraseQuery("properties", e)));
         }
-        if (!StringUtils.isEmpty(goods.getStock())) {
-            boolQueryBuilder.must(QueryBuilders.termQuery("stock", goods.getStock()));
+        if (!StringUtils.isEmpty(goodsVo.getStock())) {
+            boolQueryBuilder.must(QueryBuilders.termQuery("stock", goodsVo.getStock()));
         }
-        if (!StringUtils.isEmpty(goods.getSupplier())) {
-            boolQueryBuilder.must(QueryBuilders.termQuery("supplier", goods.getSupplier()));
+        if (!StringUtils.isEmpty(goodsVo.getSupplier())) {
+            boolQueryBuilder.must(QueryBuilders.termQuery("supplier", goodsVo.getSupplier()));
         }
         // 搜索，获取结果
         Page<Goods> goodsPage = goodsRepository.search(boolQueryBuilder, PageRequest.of(page, size));

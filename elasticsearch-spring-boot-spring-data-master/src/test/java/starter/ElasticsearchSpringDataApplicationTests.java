@@ -22,10 +22,10 @@ public class ElasticsearchSpringDataApplicationTests {
 
     @Before
     public void before() {
-        elasticsearchTemplate.deleteIndex(Goods.class);
-        elasticsearchTemplate.createIndex(Goods.class);
-        elasticsearchTemplate.putMapping(Goods.class);
-        elasticsearchTemplate.refresh(Goods.class);
+//        elasticsearchTemplate.deleteIndex(Goods.class);
+//        elasticsearchTemplate.createIndex(Goods.class);
+//        elasticsearchTemplate.putMapping(Goods.class);
+//        elasticsearchTemplate.refresh(Goods.class);
 
     }
 

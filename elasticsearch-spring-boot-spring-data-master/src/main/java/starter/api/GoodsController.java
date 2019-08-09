@@ -52,8 +52,8 @@ public class GoodsController {
     }
 
     @GetMapping("/goods/search")
-    public ResponseEntity<Map> searchGoods(@RequestBody Goods goods, @RequestParam int page, @RequestParam int size) {
-        Page<Goods> goodsPage = goddsService.search(goods, page, size);
+    public ResponseEntity<Map> searchGoods(@RequestBody GoodsVo goodsVo, @RequestParam int page, @RequestParam int size) {
+        Page<Goods> goodsPage = goddsService.search(goodsVo, page, size);
         Map m = new HashMap<>();
         m.put("totalElements", goodsPage.getTotalElements());
         m.put("totalPages", goodsPage.getTotalPages());
