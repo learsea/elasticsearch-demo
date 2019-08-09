@@ -1,1 +1,1 @@
-select * from goods where last_update_time > :sql_last_value
+select * from goods1 where last_update_time > :sql_last_value

@@ -1,4 +1,4 @@
-package starter.model;
+package starter.model.goods2;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "goods-test2", type = "goods2")
+@Document(indexName = "goods2", type = "goods")
 public class Goods2 {
     /**
      {

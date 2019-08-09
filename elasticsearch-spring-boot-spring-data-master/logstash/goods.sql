@@ -1,4 +1,4 @@
-CREATE TABLE `goods` (
+CREATE TABLE `goods1` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '商品名称',
   `property` varchar(500) NOT NULL DEFAULT '' COMMENT '商品属性 冒号分隔',
