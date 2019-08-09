@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "goods-test", type = "goods")
+@Document(indexName = "goods-test", type = "goods2")
 public class Goods2 {
     /**
      * {
